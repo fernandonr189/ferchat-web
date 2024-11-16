@@ -1,12 +1,12 @@
 <script>
-    import { Link } from "svelte-routing";
+    import { link, Link } from "svelte-routing";
     import Fa from "svelte-fa";
-    import { faBars, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+    import { faBars, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 </script>
 
-<div>
+<nav>
     <div class="sm:hidden">
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-slate-900">
             <div class="flex-none">
                 <div class="dropdown dropdown-bottom">
                     <div
@@ -16,7 +16,7 @@
                         <Fa icon={faBars} />
                     </div>
                     <ul
-                        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                        class="dropdown-content menu bg-slate-900 rounded-box z-[1] w-52 p-2 shadow">
                         <li>
                             <Link to="/">Home</Link>
                         </li>
@@ -30,24 +30,25 @@
                 <p class="btn btn-ghost text-xl">Ferchat</p>
             </div>
             <div class="flex-none">
-                <button class="btn btn-square btn-ghost">
-                    <Fa icon={faEllipsis} />
-                </button>
+                <Link to="/login" class="btn btn-square btn-ghost">
+                    <Fa icon={faRightToBracket} />
+                </Link>
             </div>
         </div>
     </div>
 
     <div class="hidden sm:flex">
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-slate-900">
             <div class="flex-1">
-                <p class="btn btn-ghost text-xl">Ferchat</p>
+                <Link to="/" class="btn btn-ghost text-xl">Ferchat</Link>
             </div>
             <div class="flex-none">
-                <li><a>Hello world</a></li>
-                <button class="btn btn-square btn-ghost">
-                    <Fa icon={faEllipsis} />
-                </button>
+                <Link to="/" class="btn btn-square btn-ghost px-8">Home</Link>
+                <Link to="/about" class="btn btn-square btn-ghost px-8">About</Link>
+                <Link to="/login" class="btn btn-square btn-ghost">
+                    <Fa icon={faRightToBracket} />
+                </Link>
             </div>
         </div>
     </div>
-</div>
+</nav>

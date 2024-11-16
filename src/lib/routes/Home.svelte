@@ -1,5 +1,3 @@
-
-
 <div>
-    <p>Hello world</p>
+  <p>This is the Home page</p>
 </div>

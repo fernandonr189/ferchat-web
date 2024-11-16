@@ -1,12 +1,14 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing"
-  import Counter from './lib/components/Counter.svelte'
+  import { Router, Link, Route } from "svelte-routing";
   import Home from "./lib/routes/Home.svelte";
+  import Nav from "./lib/components/Nav.svelte";
+  import About from "./lib/routes/About.svelte";
 
-  let url = $state("")
+  let { url } = $props();
 </script>
 
-
 <Router {url}>
-  <Route path="/" component={Home}/>
+  <Nav />
+  <Route path="/" component={Home} />
+  <Route path="/about" component={About} />
 </Router>

@@ -9,7 +9,7 @@
     async function handleSignup() {
         if(passwordInput === passwordConfirmationInput) {
             let data = await fetch(
-                "http://backend:8000/signup",
+                "http://localhost:8000/signup",
                 {
                     method: 'POST',
                     headers: {
@@ -18,7 +18,7 @@
                     body: JSON.stringify({
                         'username': usernameInput,
                         'password': passwordInput,
-                        'emal': emailInput
+                        'email': emailInput
                     })
                 }
             )

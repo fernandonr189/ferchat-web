@@ -1,11 +1,12 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { Router, Link, Route } from "svelte-routing"
+  import Counter from './lib/components/Counter.svelte'
+  import Home from "./lib/routes/Home.svelte";
+
+  let url = $state("")
 </script>
 
-<main class="bg-slate-900 h-screen text-white"> 
-  <div>
-    <Counter/>
-  </div>
-</main>
+
+<Router {url}>
+  <Route path="/" component={Home}/>
+</Router>

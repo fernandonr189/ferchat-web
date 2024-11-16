@@ -1,3 +1,3 @@
 <div>
-  <p>This is the About page</p>
+    <p>This is the About page</p>
 </div>

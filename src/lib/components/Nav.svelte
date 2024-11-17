@@ -1,7 +1,21 @@
 <script>
-    import { link, Link } from "svelte-routing";
+    import { userPrefs } from "../stores/UserPrefs.svelte";
+    import { userData } from "../stores/UserData.svelte";
+    import { Link } from "svelte-routing";
     import Fa from "svelte-fa";
     import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+    let showLogoutButton
+
+    userPrefs.subscribe((value) => {
+        showLogoutButton = value.isLogedIn
+    })
+
+    function handleLogout() {
+        userData.reset()
+        userPrefs.reset()
+    }
+
 </script>
 
 <nav>
@@ -44,9 +58,17 @@
                 <Link to="/" class="btn btn-square btn-ghost px-8">Home</Link>
                 <Link to="/about" class="btn btn-square btn-ghost px-8"
                     >About</Link>
-                <Link to="/login" class="btn btn-square btn-ghost px-8">
-                    Login!
-                </Link>
+
+                {#if showLogoutButton}
+                    <button onclick={handleLogout} class="btn btn-square btn-ghost px-8">
+                        Logout
+                    </button>
+                {:else}
+                    <Link to="/login" class="btn btn-square btn-ghost px-8">
+                        Login!
+                    </Link>
+                {/if}
+
             </div>
         </div>
     </div>

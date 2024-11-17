@@ -1,8 +1,8 @@
 <script>
+    import { userPrefs } from "../stores/UserPrefs.svelte";
     import { userData } from "../stores/UserData.svelte";
     import TextInput from "../components/TextInput.svelte";
     import { Link } from "svelte-routing";
-    import { get } from "svelte/store";
 
     let emailInput = "";
     let passwordInput = "";
@@ -25,6 +25,9 @@
                 username: jsonData.data.Model.username,
                 email: jsonData.data.Model.email,
                 jwt_tk: jsonData.data.Model.token
+            })
+            userPrefs.set({
+                isLogedIn: true
             })
             window.location.href = "/"
         }

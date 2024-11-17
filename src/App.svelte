@@ -11,6 +11,7 @@
 </script>
 
 <Router {url}>
+    <Nav />
     <Route path="/" component={Home} />
     <Route path="/about" component={About} />
     <Route path="/signup" component={Signup} />

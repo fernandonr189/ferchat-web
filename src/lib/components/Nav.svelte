@@ -3,7 +3,7 @@
     import { userData } from "../stores/UserData.svelte";
     import { Link } from "svelte-routing";
     import Fa from "svelte-fa";
-    import { faBars } from "@fortawesome/free-solid-svg-icons";
+    import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
     let showLogoutButton
 
@@ -43,9 +43,15 @@
             <div class="flex-1">
                 <p class="btn btn-ghost text-xl">Ferchat</p>
             </div>
-            <Link to="/login" class="btn btn-square btn-ghost px-8">
-                Login!
-            </Link>
+            {#if showLogoutButton}
+                <button onclick={handleLogout} class="btn btn-square btn-ghost px-8">
+                    <Fa icon={faRightFromBracket}/>
+                </button>
+            {:else}
+                <Link to="/login" class="btn btn-square btn-ghost px-8">
+                    Login!
+                </Link>
+            {/if}
         </div>
     </div>
 
@@ -61,14 +67,13 @@
 
                 {#if showLogoutButton}
                     <button onclick={handleLogout} class="btn btn-square btn-ghost px-8">
-                        Logout
+                        <Fa icon={faRightFromBracket}/>
                     </button>
                 {:else}
                     <Link to="/login" class="btn btn-square btn-ghost px-8">
                         Login!
                     </Link>
                 {/if}
-
             </div>
         </div>
     </div>

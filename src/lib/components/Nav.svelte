@@ -1,10 +1,7 @@
 <script>
     import { link, Link } from "svelte-routing";
     import Fa from "svelte-fa";
-    import {
-        faBars,
-        faRightToBracket,
-    } from "@fortawesome/free-solid-svg-icons";
+    import { faBars } from "@fortawesome/free-solid-svg-icons";
 </script>
 
 <nav>
@@ -32,11 +29,9 @@
             <div class="flex-1">
                 <p class="btn btn-ghost text-xl">Ferchat</p>
             </div>
-            <div class="flex-none">
-                <Link to="/login" class="btn btn-square btn-ghost">
-                    <Fa icon={faRightToBracket} />
-                </Link>
-            </div>
+            <Link to="/login" class="btn btn-square btn-ghost px-8">
+                Login!
+            </Link>
         </div>
     </div>
 
@@ -49,8 +44,8 @@
                 <Link to="/" class="btn btn-square btn-ghost px-8">Home</Link>
                 <Link to="/about" class="btn btn-square btn-ghost px-8"
                     >About</Link>
-                <Link to="/login" class="btn btn-square btn-ghost">
-                    <Fa icon={faRightToBracket} />
+                <Link to="/login" class="btn btn-square btn-ghost px-8">
+                    Login!
                 </Link>
             </div>
         </div>

@@ -15,7 +15,11 @@
         <span class="label-text">{label}</span>
         <span class="label-text-alt">{topRight}</span>
     </div>
-    <input bind:value {type} placeholder={hint} class="input input-bordered bg-slate-800" />
+    <input
+        bind:value
+        {type}
+        placeholder={hint}
+        class="input input-bordered bg-slate-800" />
     <div class="label">
         <span class="label-text-alt">{bottomLeft}</span>
         <span class="label-text-alt">{bottomRight}</span>

@@ -1,6 +1,8 @@
 <script>
+    import { userData } from "../stores/UserData.svelte";
     import TextInput from "../components/TextInput.svelte";
     import { Link } from "svelte-routing";
+    import { get } from "svelte/store";
 
     let emailInput = "";
     let passwordInput = "";
@@ -16,7 +18,19 @@
                 password: passwordInput,
             }),
         });
-        console.log(data);
+        if(data.status === 200) {
+            let jsonData = await data.json()
+            // Login correct
+            userData.set({
+                username: jsonData.data.Model.username,
+                email: jsonData.data.Model.email,
+                jwt_tk: jsonData.data.Model.token
+            })
+            window.location.href = "/"
+        }
+        else {
+            // Login incorrect
+        }
     }
 </script>
 

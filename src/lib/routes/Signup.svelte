@@ -1,6 +1,8 @@
 <script>
     import { Link } from "svelte-routing";
     import TextInput from "../components/TextInput.svelte";
+    import { userData } from "../stores/UserData.svelte";
+    import { userPrefs } from "../stores/UserPrefs.svelte";
 
     let usernameInput = "";
     let passwordInput = "";
@@ -20,7 +22,37 @@
                     email: emailInput,
                 }),
             });
-            console.log(data);
+            if(data.status === 200) {
+                handleLogin()
+            }
+        }
+    }
+
+    async function handleLogin() {
+        let data = await fetch("http://localhost:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: emailInput,
+                password: passwordInput,
+            }),
+        });
+        if (data.status === 200) {
+            let jsonData = await data.json();
+            // Login correct
+            userData.set({
+                username: jsonData.data.Model.username,
+                email: jsonData.data.Model.email,
+                jwt_tk: jsonData.data.Model.token,
+            });
+            userPrefs.set({
+                isLogedIn: true,
+            });
+            window.location.href = "/";
+        } else {
+            // Login incorrect
         }
     }
 </script>

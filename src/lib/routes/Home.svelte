@@ -5,10 +5,27 @@
     import { get } from "svelte/store";
 
     let user = get(userData).username;
+    let inputValue = $state("");
 
     userData.subscribe((value) => {
         user = value.username;
     });
+
+    let users = $state([]);
+
+    async function handleFindUsers() {
+        let data = await fetch(
+            "".concat("http://localhost:8000/friends/find/", inputValue),
+            {
+                method: "GET",
+            },
+        );
+        if (data.status === 200) {
+            let jsonData = await data.json();
+            users = jsonData.data.Model.map((item) => item);
+            console.log(users);
+        }
+    }
 </script>
 
 <div class="bg-slate-800 h-screen flex flex-row">
@@ -32,8 +49,19 @@
                     <p class="btn btn-ghost text-xl my-1">Ferchat</p>
                 </div>
                 <div class="p-2">
-                    <label class="input input-bordered flex items-center gap-2 bg-slate-800">
-                        <input type="text" class="grow" placeholder="Search" />
+                    <label
+                        class="input input-bordered flex items-center gap-2 bg-slate-800">
+                        <input
+                            bind:value={inputValue}
+                            type="text"
+                            class="grow"
+                            placeholder="Search"
+                            onkeydown={(event) => {
+                                console.log(inputValue);
+                                if (event.key === "Enter") {
+                                    handleFindUsers();
+                                }
+                            }} />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
@@ -46,8 +74,13 @@
                         </svg>
                     </label>
                 </div>
-                <li><ContactOption /></li>
-                <li><ContactOption /></li>
+                {#each users as user}
+                    <li>
+                        <ContactOption
+                            username={user.username}
+                            msg={user.email} />
+                    </li>
+                {/each}
             </ul>
         </div>
     </div>

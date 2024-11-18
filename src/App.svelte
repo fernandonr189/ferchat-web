@@ -16,5 +16,4 @@
     <Route path="/about" component={About} />
     <Route path="/signup" component={Signup} />
     <Route path="/login" component={Login} />
-    <Footer />
 </Router>

@@ -18,20 +18,19 @@
                 password: passwordInput,
             }),
         });
-        if(data.status === 200) {
-            let jsonData = await data.json()
+        if (data.status === 200) {
+            let jsonData = await data.json();
             // Login correct
             userData.set({
                 username: jsonData.data.Model.username,
                 email: jsonData.data.Model.email,
-                jwt_tk: jsonData.data.Model.token
-            })
+                jwt_tk: jsonData.data.Model.token,
+            });
             userPrefs.set({
-                isLogedIn: true
-            })
-            window.location.href = "/"
-        }
-        else {
+                isLogedIn: true,
+            });
+            window.location.href = "/";
+        } else {
             // Login incorrect
         }
     }

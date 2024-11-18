@@ -3,19 +3,21 @@
     import { userData } from "../stores/UserData.svelte";
     import { Link } from "svelte-routing";
     import Fa from "svelte-fa";
-    import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+    import {
+        faBars,
+        faRightFromBracket,
+    } from "@fortawesome/free-solid-svg-icons";
 
-    let showLogoutButton
+    let showLogoutButton;
 
     userPrefs.subscribe((value) => {
-        showLogoutButton = value.isLogedIn
-    })
+        showLogoutButton = value.isLogedIn;
+    });
 
     function handleLogout() {
-        userData.reset()
-        userPrefs.reset()
+        userData.reset();
+        userPrefs.reset();
     }
-
 </script>
 
 <nav>
@@ -44,8 +46,10 @@
                 <p class="btn btn-ghost text-xl">Ferchat</p>
             </div>
             {#if showLogoutButton}
-                <button onclick={handleLogout} class="btn btn-square btn-ghost px-8">
-                    <Fa icon={faRightFromBracket}/>
+                <button
+                    onclick={handleLogout}
+                    class="btn btn-square btn-ghost px-8">
+                    <Fa icon={faRightFromBracket} />
                 </button>
             {:else}
                 <Link to="/login" class="btn btn-square btn-ghost px-8">
@@ -66,8 +70,10 @@
                     >About</Link>
 
                 {#if showLogoutButton}
-                    <button onclick={handleLogout} class="btn btn-square btn-ghost px-8">
-                        <Fa icon={faRightFromBracket}/>
+                    <button
+                        onclick={handleLogout}
+                        class="btn btn-square btn-ghost px-8">
+                        <Fa icon={faRightFromBracket} />
                     </button>
                 {:else}
                     <Link to="/login" class="btn btn-square btn-ghost px-8">

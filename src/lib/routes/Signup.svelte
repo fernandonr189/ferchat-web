@@ -22,8 +22,8 @@
                     email: emailInput,
                 }),
             });
-            if(data.status === 200) {
-                handleLogin()
+            if (data.status === 200) {
+                handleLogin();
             }
         }
     }

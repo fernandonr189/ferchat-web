@@ -28,14 +28,17 @@
     }
 </script>
 
-<div class="bg-slate-800 h-screen flex flex-row">
+<div class="bg-slate-800 flex flex-row flex-grow">
     <SideMenu />
     <div class="drawer sm:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col items-center justify-center">
+        <div class="drawer-content flex flex-col justify-center items-center">
             <!-- Page content here -->
-            <div class="flex flex-col">
-                <p>This is the page content</p>
+            <div class="flex-grow">
+                <p>Chats go here</p>
+            </div>
+            <div class="">
+                <p>This is the chat input</p>
             </div>
         </div>
         <div class="drawer-side">

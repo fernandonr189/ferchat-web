@@ -11,9 +11,11 @@
 </script>
 
 <Router {url}>
-    <Nav />
-    <Route path="/" component={Home} />
-    <Route path="/about" component={About} />
-    <Route path="/signup" component={Signup} />
-    <Route path="/login" component={Login} />
+    <div class="h-screen flex flex-col">
+        <Nav />
+        <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+    </div>
 </Router>

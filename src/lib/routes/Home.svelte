@@ -65,7 +65,7 @@
                     placeholder="Write your message here!"></textarea>
                 <button
                     onclick={sendMessage}
-                    class="p-4 my-1 mx-2 rounded-full hover:bg-slate-700">
+                    class="p-4 my-1 mx-2 rounded-full hover:bg-slate-700 ml-3">
                     <Fa icon={faPaperPlane} />
                 </button>
             </div>

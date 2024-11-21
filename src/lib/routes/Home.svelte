@@ -5,6 +5,7 @@
     import SideMenu from "../components/SideMenu.svelte";
     import { userData } from "../stores/UserData.svelte";
     import { get } from "svelte/store";
+    import ChatBubble from "../components/ChatBubble.svelte";
 
     let messageInput = $state("");
 
@@ -58,17 +59,7 @@
             <!-- Page content here -->
             <div class="flex-grow w-full p-5 overflow-auto">
                 {#each messages as { message, start }}
-                    {#if start}
-                        <div class="chat chat-start">
-                            <div class="chat-bubble">
-                                {message}
-                            </div>
-                        </div>
-                    {:else}
-                        <div class="chat chat-end">
-                            <div class="chat-bubble">{message}</div>
-                        </div>
-                    {/if}
+                    <ChatBubble {start} {message} />
                 {/each}
             </div>
             <div class="bg-slate-900 p-2 flex flex-row w-full">

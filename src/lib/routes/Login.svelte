@@ -69,12 +69,14 @@
                         </label>
                     </div>
                     <div class="form-control mt-6">
-                        <button onclick={handleLogin} class="btn btn-primary">Login</button>
+                        <button onclick={handleLogin} class="btn btn-primary"
+                            >Login</button>
                     </div>
-                    <div class="form-control mt-1"><label class="label">
-                        <a href="#" class="label-text-alt link link-hover"
-                            >Don't have an account?</a>
-                    </label>
+                    <div class="form-control mt-1">
+                        <label class="label">
+                            <a href="#" class="label-text-alt link link-hover"
+                                >Don't have an account?</a>
+                        </label>
                         <Link to="/signup" class="btn btn-primary">Signup</Link>
                     </div>
                 </form>

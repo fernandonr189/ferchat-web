@@ -20,9 +20,9 @@
     }
 </script>
 
-<nav>
+<nav class="nav bg-slate-900">
     <div class="sm:hidden">
-        <div class="navbar bg-slate-900">
+        <div class="navbar">
             <div class="flex-none">
                 <div class="dropdown dropdown-bottom">
                     <div

@@ -40,16 +40,36 @@
     function sendMessage() {
         messageInput = "";
     }
+
+    let messages = $state([]);
+    for (let i = 0; i < 15; i++) {
+        messages.push({
+            message: "This is the message",
+            start: i % 2 === 0,
+        });
+    }
 </script>
 
-<div class="bg-slate-800 flex flex-row flex-grow">
+<div class="bg-slate-800 flex flex-row flex-grow page overflow-hidden">
     <SideMenu />
     <div class="drawer sm:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col justify-center items-center">
+        <div class="drawer-content flex flex-col page">
             <!-- Page content here -->
-            <div class="flex-grow">
-                <p>Chats go here</p>
+            <div class="flex-grow w-full p-5 overflow-auto">
+                {#each messages as { message, start }}
+                    {#if start}
+                        <div class="chat chat-start">
+                            <div class="chat-bubble">
+                                {message}
+                            </div>
+                        </div>
+                    {:else}
+                        <div class="chat chat-end">
+                            <div class="chat-bubble">{message}</div>
+                        </div>
+                    {/if}
+                {/each}
             </div>
             <div class="bg-slate-900 p-2 flex flex-row w-full">
                 <textarea

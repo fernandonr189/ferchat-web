@@ -74,8 +74,7 @@
                     </div>
                     <div class="form-control mt-1">
                         <label class="label">
-                            <a href="#" class="label-text-alt link link-hover"
-                                >Don't have an account?</a>
+                            <p class="label-text-alt">Don't have an account?</p>
                         </label>
                         <Link to="/signup" class="btn btn-primary">Signup</Link>
                     </div>

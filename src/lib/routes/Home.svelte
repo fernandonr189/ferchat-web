@@ -1,8 +1,12 @@
 <script>
     import ContactOption from "../components/ContactOption.svelte";
+    import Fa from "svelte-fa";
+    import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
     import SideMenu from "../components/SideMenu.svelte";
     import { userData } from "../stores/UserData.svelte";
     import { get } from "svelte/store";
+
+    let messageInput = $state("");
 
     let user = get(userData).username;
     let inputValue = $state("");
@@ -26,6 +30,16 @@
             console.log(users);
         }
     }
+
+    function autoResize(event) {
+        const textarea = event.target;
+        textarea.style.height = "auto";
+        textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+
+    function sendMessage() {
+        messageInput = "";
+    }
 </script>
 
 <div class="bg-slate-800 flex flex-row flex-grow">
@@ -37,8 +51,23 @@
             <div class="flex-grow">
                 <p>Chats go here</p>
             </div>
-            <div class="">
-                <p>This is the chat input</p>
+            <div class="bg-slate-900 p-2 flex flex-row w-full">
+                <textarea
+                    onkeydown={(event) => {
+                        if (event.key === "Enter") {
+                            sendMessage();
+                        }
+                    }}
+                    bind:value={messageInput}
+                    oninput={autoResize}
+                    rows="1"
+                    class="textarea textarea-bordered textarea-xs flex-grow resize-none text-lg"
+                    placeholder="Write your message here!"></textarea>
+                <button
+                    onclick={sendMessage}
+                    class="p-4 my-1 mx-2 rounded-full hover:bg-slate-700">
+                    <Fa icon={faPaperPlane} />
+                </button>
             </div>
         </div>
         <div class="drawer-side">
@@ -60,7 +89,6 @@
                             class="grow"
                             placeholder="Search"
                             onkeydown={(event) => {
-                                console.log(inputValue);
                                 if (event.key === "Enter") {
                                     handleFindUsers();
                                 }

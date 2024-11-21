@@ -43,7 +43,7 @@
     }
 
     let messages = $state([]);
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 4; i++) {
         messages.push({
             message: "This is the message",
             start: i % 2 === 0,

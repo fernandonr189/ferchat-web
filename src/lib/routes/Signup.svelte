@@ -57,42 +57,78 @@
     }
 </script>
 
-<div class="bg-slate-800 flex items-center justify-center h-fit">
-    <div
-        class="bg-slate-900 p-6 rounded-lg shadow-lg m-5 flex flex-col sm:flex-row">
-        <div class="m-4">
-            <img
-                class="w-full h-auto rounded-md shadow"
-                src="login_background.jpg"
-                alt="babck" />
-        </div>
-
-        <div class="flex flex-col ml-5 mr-3 justify-center items-center">
-            <TextInput
-                bind:value={usernameInput}
-                hint="CoolUsername93"
-                label="Username" />
-            <TextInput
-                bind:value={emailInput}
-                hint="example@example.com"
-                label="Email" />
-            <TextInput
-                bind:value={passwordInput}
-                hint="Very safe password"
-                type="password"
-                label="Password" />
-            <TextInput
-                bind:value={passwordConfirmationInput}
-                hint="Re-type password"
-                type="password"
-                label="Confirm password" />
-
-            <button onclick={handleSignup} class="btn btn-outline">
-                Signup
-            </button>
-            <div class="mt-4 flex flex-col items-center">
-                <p class="py-2">Already a member?</p>
-                <Link to="/login" class="btn btn-outline">Login!</Link>
+<div class="page">
+    <div class="hero bg-slate-800 py-4">
+        <div class="hero-content flex-col lg:flex-row-reverse px-12">
+            <!-- svelte-ignore a11y_label_has_associated_control -->
+            <div class="card bg-slate-900 w-full max-w-sm shrink-0 shadow-2xl">
+                <form class="card-body">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Username</span>
+                        </label>
+                        <input
+                            bind:value={usernameInput}
+                            type="text"
+                            placeholder="username"
+                            class="input input-bordered"
+                            required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Email</span>
+                        </label>
+                        <input
+                            bind:value={emailInput}
+                            type="email"
+                            placeholder="email"
+                            class="input input-bordered"
+                            required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Password</span>
+                        </label>
+                        <input
+                            bind:value={passwordInput}
+                            type="password"
+                            placeholder="password"
+                            class="input input-bordered"
+                            required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text"
+                                >Password confirmation</span>
+                        </label>
+                        <input
+                            bind:value={passwordConfirmationInput}
+                            type="password"
+                            placeholder="repeat password"
+                            class="input input-bordered"
+                            required />
+                    </div>
+                    <div class="form-control mt-6">
+                        <button onclick={handleSignup} class="btn btn-primary"
+                            >Signup</button>
+                    </div>
+                    <div class="form-control mt-1">
+                        <label class="label">
+                            <p class="label-text-alt">
+                                Already have an account?
+                            </p>
+                        </label>
+                        <Link to="/login" class="btn btn-primary">Login</Link>
+                    </div>
+                </form>
+            </div>
+            <div class="lg:text-right lg:visible invisible">
+                <h1 class="text-5xl font-bold">Register now!</h1>
+                <p class="py-6">
+                    Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                    assumenda excepturi exercitationem quasi. In deleniti eaque
+                    aut repudiandae et a id nisi.
+                </p>
             </div>
         </div>
     </div>

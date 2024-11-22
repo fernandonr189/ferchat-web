@@ -2,7 +2,7 @@
     import { userPrefs } from "../stores/UserPrefs.svelte";
     import { userData } from "../stores/UserData.svelte";
     import TextInput from "../components/TextInput.svelte";
-    import { Link } from "svelte-routing";
+    import { Link } from "svelte5-router";
 
     let emailInput = "";
     let passwordInput = "";
@@ -69,7 +69,7 @@
                         </label>
                     </div>
                     <div class="form-control mt-6">
-                        <button onclick={handleLogin} class="btn btn-primary"
+                        <button type="button" onclick={handleLogin} class="btn btn-primary"
                             >Login</button>
                     </div>
                     <div class="form-control mt-1">

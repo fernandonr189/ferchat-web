@@ -1,7 +1,7 @@
 <script>
     import { userPrefs } from "../stores/UserPrefs.svelte";
     import { userData } from "../stores/UserData.svelte";
-    import { Link } from "svelte-routing";
+    import { Link } from "svelte5-router";
     import Fa from "svelte-fa";
     import {
         faBars,

@@ -1,5 +1,5 @@
 <script>
-    import { Link } from "svelte-routing";
+    import { Link } from "svelte5-router";
 </script>
 
 <div class="hero bg-slate-800 page px-8">

@@ -1,5 +1,5 @@
 <script>
-    import { Link } from "svelte-routing";
+    import { Link } from "svelte5-router";
     import TextInput from "../components/TextInput.svelte";
     import { userData } from "../stores/UserData.svelte";
     import { userPrefs } from "../stores/UserPrefs.svelte";
@@ -109,7 +109,7 @@
                             required />
                     </div>
                     <div class="form-control mt-6">
-                        <button onclick={handleSignup} class="btn btn-primary"
+                        <button type="button" onclick={handleSignup} class="btn btn-primary"
                             >Signup</button>
                     </div>
                     <div class="form-control mt-1">

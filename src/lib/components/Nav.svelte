@@ -20,7 +20,7 @@
     }
 </script>
 
-<nav class="nav bg-slate-900">
+<nav class="sm:nav bg-slate-900">
     <div class="sm:hidden">
         <div class="navbar">
             <div class="flex-none">

@@ -22,6 +22,7 @@
         SETTINGS: "SETTINGS",
     };
     let selectedOption = $state(options.MESSAGES);
+    let { sideMenuOpen = $bindable(false) } = $props();
 </script>
 
 <div class="sidebar">
@@ -29,6 +30,8 @@
         <button
             class="sidebar-icon"
             onclick={() => {
+                console.log(sideMenuOpen);
+                sideMenuOpen = !sideMenuOpen;
                 selectedOption = options.MESSAGES;
             }}
         >
@@ -100,6 +103,7 @@
         box-sizing: border-box;
         border-right: 1px solid #323333;
         background-color: #1d1f1f;
+        z-index: 1;
     }
     .sidebar-icon {
         background-color: transparent;

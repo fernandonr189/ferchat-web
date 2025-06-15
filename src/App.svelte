@@ -6,21 +6,11 @@
 
 <main>
     <Sidebar />
-    <div class="sidemenu"><Sidemenu /></div>
+    <Sidemenu />
     <div class="main-content"><Chat /></div>
 </main>
 
 <style>
-    .sidemenu {
-        position: absolute;
-        top: 0;
-        left: 4em;
-        height: 100%;
-        width: 32em;
-        border-style: none solid none none;
-        border-width: 1px;
-        border-color: #323333;
-    }
     .main-content {
         position: absolute;
         top: 0;

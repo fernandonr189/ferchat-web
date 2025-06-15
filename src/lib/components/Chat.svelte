@@ -199,6 +199,9 @@
         margin: 0;
     }
     .chat-messages {
+        transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out;
         position: absolute;
         top: 4em;
         left: 36em;
@@ -212,6 +215,9 @@
         padding: 0.8em 5em;
     }
     .message-input {
+        transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out;
         position: absolute;
         bottom: 0;
         left: 36em;
@@ -221,6 +227,9 @@
         box-sizing: border-box;
     }
     .chat-header {
+        transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out;
         display: flex;
         position: absolute;
         top: 0;
@@ -244,6 +253,9 @@
         object-fit: cover;
     }
     .chat-background {
+        transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out;
         position: absolute;
         top: 4em;
         left: 36em;

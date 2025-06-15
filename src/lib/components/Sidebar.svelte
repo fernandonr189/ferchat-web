@@ -13,16 +13,21 @@
         faAddressBook as faPeopleGroupRegular,
         faUser as faUserRegular,
     } from "@fortawesome/free-regular-svg-icons";
+    import { options } from "../js/sidemenuOptions.js";
 
-    const options = {
-        MESSAGES: "MESSAGES",
-        NOTIFICATIONS: "NOTIFICATIONS",
-        CONTACTS: "CONTACTS",
-        PROFILE: "PROFILE",
-        SETTINGS: "SETTINGS",
-    };
-    let selectedOption = $state(options.MESSAGES);
-    let { sideMenuOpen = $bindable(false) } = $props();
+    let {
+        sideMenuOpen = $bindable(false),
+        selectedOption = $bindable(options.MESSAGES),
+    } = $props();
+
+    function toggleSideMenu(option) {
+        if (sideMenuOpen && option == selectedOption) {
+            sideMenuOpen = false;
+        } else if (!sideMenuOpen) {
+            sideMenuOpen = true;
+        }
+        selectedOption = option;
+    }
 </script>
 
 <div class="sidebar">
@@ -31,8 +36,7 @@
             class="sidebar-icon"
             onclick={() => {
                 console.log(sideMenuOpen);
-                sideMenuOpen = !sideMenuOpen;
-                selectedOption = options.MESSAGES;
+                toggleSideMenu(options.MESSAGES);
             }}
         >
             <Fa
@@ -44,7 +48,7 @@
         <button
             class="sidebar-icon"
             onclick={() => {
-                selectedOption = options.NOTIFICATIONS;
+                toggleSideMenu(options.NOTIFICATIONS);
             }}
         >
             <Fa
@@ -56,7 +60,7 @@
         <button
             class="sidebar-icon"
             onclick={() => {
-                selectedOption = options.CONTACTS;
+                toggleSideMenu(options.CONTACTS);
             }}
         >
             <Fa
@@ -70,7 +74,7 @@
         <button
             class="sidebar-icon"
             onclick={() => {
-                selectedOption = options.PROFILE;
+                toggleSideMenu(options.PROFILE);
             }}
         >
             <Fa
@@ -82,7 +86,7 @@
         <button
             class="sidebar-icon"
             onclick={() => {
-                selectedOption = options.SETTINGS;
+                toggleSideMenu(options.SETTINGS);
             }}
         >
             <Fa icon={faGearSolid} />

@@ -1,13 +1,15 @@
 <script>
     import profilePic from "../../assets/profile_pic.jpg";
-    let { title, subtitle } = $props();
+    let { title, subtitle = null } = $props();
 </script>
 
 <div class="contact-container">
     <img class="profile-pic" src={profilePic} alt="profile_picture" />
-    <div>
+    <div class="content">
         <h4>{title}</h4>
-        <p>{subtitle}</p>
+        {#if subtitle != null}
+            <p>{subtitle}</p>
+        {/if}
     </div>
 </div>
 
@@ -22,10 +24,11 @@
         border-radius: 0.8em;
         transition: background-color 0.1s;
     }
-    .contact-container div {
+    .content {
         display: flex;
         flex-direction: column;
         margin-left: 1em;
+        text-align: start;
     }
     .contact-container:hover {
         background-color: #323333;

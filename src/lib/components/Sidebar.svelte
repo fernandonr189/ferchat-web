@@ -26,9 +26,9 @@
 
 <div class="sidebar">
     <div class="top-sidebar-icons">
-        <div
+        <button
             class="sidebar-icon"
-            on:click={() => {
+            onclick={() => {
                 selectedOption = options.MESSAGES;
             }}
         >
@@ -37,10 +37,10 @@
                     ? faMessageSolid
                     : faMessageRegular}
             />
-        </div>
-        <div
+        </button>
+        <button
             class="sidebar-icon"
-            on:click={() => {
+            onclick={() => {
                 selectedOption = options.NOTIFICATIONS;
             }}
         >
@@ -49,10 +49,10 @@
                     ? faBellSolid
                     : faBellRegular}
             />
-        </div>
-        <div
+        </button>
+        <button
             class="sidebar-icon"
-            on:click={() => {
+            onclick={() => {
                 selectedOption = options.CONTACTS;
             }}
         >
@@ -61,12 +61,12 @@
                     ? faPeopleGroupSolid
                     : faPeopleGroupRegular}
             />
-        </div>
+        </button>
     </div>
     <div class="bottom-sidebar-icons">
-        <div
+        <button
             class="sidebar-icon"
-            on:click={() => {
+            onclick={() => {
                 selectedOption = options.PROFILE;
             }}
         >
@@ -75,15 +75,15 @@
                     ? faUserSolid
                     : faUserRegular}
             />
-        </div>
-        <div
+        </button>
+        <button
             class="sidebar-icon"
-            on:click={() => {
+            onclick={() => {
                 selectedOption = options.SETTINGS;
             }}
         >
             <Fa icon={faGearSolid} />
-        </div>
+        </button>
     </div>
 </div>
 
@@ -104,9 +104,12 @@
         background-color: #1d1f1f;
     }
     .sidebar-icon {
+        background-color: transparent;
+        padding: 0;
+        border: none;
         height: 2.25em;
         width: 2.25em;
-        margin: 0.8em 0 0.8em 0;
+        margin: 0.4em 0 0.4em 0;
         border-radius: 50%;
         transition: background-color 0.3s;
         align-content: center;

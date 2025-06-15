@@ -7,15 +7,8 @@
 <main>
     <Sidebar />
     <Sidemenu />
-    <div class="main-content"><Chat /></div>
+    <Chat />
 </main>
 
 <style>
-    .main-content {
-        position: absolute;
-        top: 0;
-        left: 36em;
-        width: calc(100% - 36em);
-        height: 100%;
-    }
 </style>

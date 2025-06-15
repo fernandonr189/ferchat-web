@@ -98,9 +98,7 @@
         width: 4em;
         height: 100%;
         box-sizing: border-box;
-        border-style: none solid none none;
-        border-width: 1px;
-        border-color: #323333;
+        border-right: 1px solid #323333;
         background-color: #1d1f1f;
     }
     .sidebar-icon {

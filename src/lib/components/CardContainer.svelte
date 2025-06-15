@@ -4,7 +4,7 @@
 </script>
 
 <div class="contact-container">
-    <img class="profile-pic" src={profilePic} alt="Profile Picture" />
+    <img class="profile-pic" src={profilePic} alt="profile_picture" />
     <div>
         <h4>{title}</h4>
         <p>{subtitle}</p>

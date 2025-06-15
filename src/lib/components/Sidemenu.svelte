@@ -163,11 +163,9 @@
         position: fixed;
         top: 0;
         left: 4em;
-        width: 32em;
+        width: calc(32em - 1px);
         height: 8em;
-        border-style: none solid none none;
-        border-color: #323333;
-        border-width: 1px;
+        border-right: 1px solid #323333;
         text-align: left;
     }
     .sidemenu-header h2 {
@@ -177,11 +175,9 @@
         position: absolute;
         top: 8em;
         left: 4em;
-        width: 32em;
+        width: calc(32em - 1px);
         height: calc(100vh - 8em);
-        border-style: none solid none none;
-        border-color: #323333;
-        border-width: 1px;
+        border-right: 1px solid #323333;
         overflow-y: scroll;
     }
 </style>

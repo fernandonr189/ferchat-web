@@ -1,8 +1,6 @@
 <script>
-    import { faSearch } from "@fortawesome/free-solid-svg-icons";
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
-    import Fa from "svelte-fa";
 
     const contacts = [
         {
@@ -159,6 +157,14 @@
 </div>
 
 <style>
+    @media only screen and (max-width: 1000px) {
+        .sidemenu-header {
+            opacity: 0;
+        }
+        .contacts-container {
+            opacity: 0;
+        }
+    }
     .sidemenu-header {
         position: fixed;
         top: 0;

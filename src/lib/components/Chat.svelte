@@ -14,6 +14,20 @@
 </div>
 
 <style>
+    @media only screen and (max-width: 1000px) {
+        .chat-header {
+            left: 4em !important;
+            width: calc(100% - 4em) !important;
+        }
+        .chat-background {
+            left: 4em !important;
+            width: calc(100% - 4em) !important;
+        }
+        .message-input {
+            left: 4em !important;
+            width: calc(100% - 4em) !important;
+        }
+    }
     .message-input {
         position: absolute;
         bottom: 0;

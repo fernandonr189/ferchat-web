@@ -97,17 +97,15 @@
 <style>
     .sidebar {
         position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         top: 0;
         left: 0;
         width: 4em;
         height: 100%;
         box-sizing: border-box;
         border-right: 1px solid #323333;
+        display: flex;
+        flex-direction: column;
         background-color: #1d1f1f;
-        z-index: 1;
     }
     .sidebar-icon {
         background-color: transparent;
@@ -118,7 +116,6 @@
         margin: 0.4em 0 0.4em 0;
         border-radius: 50%;
         transition: background-color 0.3s;
-        align-content: center;
     }
     .bottom-sidebar-icons {
         margin-top: auto;

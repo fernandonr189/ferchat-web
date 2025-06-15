@@ -2,206 +2,93 @@
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
 
-    const contacts = [
+    const messages = [
         {
             name: "John Doe",
-            lastMessage: "Hello world!",
+            lastMessage: "hellooo",
         },
         {
             name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
             lastMessage: "How are you?",
         },
         {
+            name: "Alice Smith",
+            lastMessage: "Yes!",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "No, i don't think so",
+        },
+        {
             name: "Charlie Brown",
-            lastMessage: "What's up?",
+            lastMessage: "",
         },
         {
             name: "John Doe",
-            lastMessage: "Hello",
+            lastMessage: "hellooo",
         },
         {
             name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
             lastMessage: "How are you?",
         },
         {
+            name: "Alice Smith",
+            lastMessage: "Yes!",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "No, i don't think so",
+        },
+        {
             name: "Charlie Brown",
-            lastMessage: "What's up?",
+            lastMessage: "",
         },
         {
             name: "John Doe",
-            lastMessage: "Hello",
+            lastMessage: "hellooo",
         },
         {
             name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
             lastMessage: "How are you?",
         },
         {
-            name: "Charlie Brown",
-            lastMessage: "What's up?",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "Hello",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
             name: "Alice Smith",
-            lastMessage: "Hey",
+            lastMessage: "Yes!",
         },
         {
             name: "Bob Johnson",
-            lastMessage: "How are you?",
+            lastMessage: "No, i don't think so",
         },
         {
             name: "Charlie Brown",
-            lastMessage: "What's up?",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "Hello",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "What's up?",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "Hello",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "What's up?",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "Hello",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "Hi",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Hey",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "What's up?",
+            lastMessage: "",
         },
     ];
-
-    let { show = false } = $props();
 </script>
 
-<div class="sidemenu-header" class:open={show}>
-    <h2 class="title">Ferchat</h2>
-    <SearchBar />
+<div class="contacts-header">
+    <h2>Ferchat</h2>
+    <div class="search-bar-container">
+        <SearchBar />
+    </div>
 </div>
-<div class="contacts-container" class:open={show}>
-    {#each contacts as contact}
-        <CardContainer title={contact.name} subtitle={contact.lastMessage} />
+<div class="scroll-vertical">
+    {#each messages as message}
+        <CardContainer title={message.name} subtitle={message.lastMessage} />
     {/each}
 </div>
 
 <style>
-    .open {
-        opacity: 1 !important;
-        transform: translateX(0%) !important;
-        z-index: 1 !important;
-        background-color: #161717;
+    .contacts-header {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
     }
-    @media only screen and (max-width: 1200px) {
-        .sidemenu-header {
-            opacity: 0;
-            transform: translateX(-100%);
-            z-index: 0;
-        }
-        .contacts-container {
-            opacity: 0;
-            transform: translateX(-100%);
-            z-index: 0;
-        }
+    .contacts-header h2 {
+        margin: 0;
+        padding: 0.8em;
     }
-    .sidemenu-header {
-        transition:
-            opacity 0.3s,
-            transform 0.3s;
-        position: fixed;
-        top: 0;
-        left: 4em;
-        width: calc(32em - 1px);
-        height: 8em;
-        border-right: 1px solid #323333;
-        text-align: left;
-    }
-    .sidemenu-header h2 {
-        padding-left: 0.8em;
-    }
-    .contacts-container {
-        transition:
-            opacity 0.3s,
-            transform 0.3s;
-        position: absolute;
-        top: 8em;
-        left: 4em;
-        width: calc(32em - 1px);
-        height: calc(100vh - 8em);
-        border-right: 1px solid #323333;
-        overflow-y: scroll;
+    .search-bar-container {
+        padding-bottom: 1em;
     }
 </style>

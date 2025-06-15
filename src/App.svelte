@@ -10,7 +10,9 @@
 <main>
     <Sidebar bind:sideMenuOpen bind:selectedOption={sideMenuOption} />
     <SideMenu show={sideMenuOpen} selectedOption={sideMenuOption} />
+    <!--
     <Chat />
+    -->
 </main>
 
 <style>

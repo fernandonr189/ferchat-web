@@ -2,114 +2,100 @@
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
 
-    const contacts = [
+    const notifications = [
         {
             name: "John Doe",
-            content: "Reaccionó a tu mensaje",
+            content: "Has reacted to your message",
         },
         {
             name: "Jane Doe",
-            content: "Reaccionó a tu mensaje",
+            content: "Added you to a group",
         },
         {
             name: "Alice Smith",
-            content: "Compartió una encuesta",
+            content: "Added you to a group",
         },
         {
             name: "Bob Johnson",
-            content: "Reaccionó a tu mensaje",
-        },
-        {
-            name: "Charlie Brown",
-            content: "Reaccionó a tu mensaje",
+            content: "Invited you to a comunity",
         },
         {
             name: "John Doe",
-            content: "Reaccionó a tu mensaje",
+            content: "Has reacted to your message",
         },
         {
             name: "Jane Doe",
-            content: "Has sido agregado al grupo",
+            content: "Added you to a group",
         },
         {
             name: "Alice Smith",
-            content: "Has sido agregado al grupo",
+            content: "Added you to a group",
         },
         {
             name: "Bob Johnson",
-            content: "Has sido agregado al grupo",
-        },
-        {
-            name: "Charlie Brown",
-            content: "Has sido agregado al grupo",
+            content: "Invited you to a comunity",
         },
         {
             name: "John Doe",
-            content: "Has sido agregado al grupo",
+            content: "Has reacted to your message",
         },
         {
             name: "Jane Doe",
-            content: "Has sido agregado al grupo",
+            content: "Added you to a group",
+        },
+        {
+            name: "Alice Smith",
+            content: "Added you to a group",
+        },
+        {
+            name: "Bob Johnson",
+            content: "Invited you to a comunity",
+        },
+        {
+            name: "John Doe",
+            content: "Has reacted to your message",
+        },
+        {
+            name: "Jane Doe",
+            content: "Added you to a group",
+        },
+        {
+            name: "Alice Smith",
+            content: "Added you to a group",
+        },
+        {
+            name: "Bob Johnson",
+            content: "Invited you to a comunity",
         },
     ];
-
-    let { show = false } = $props();
 </script>
 
-<div class="sidemenu-header" class:open={show}>
-    <h2 class="title">Notificaciones</h2>
-    <SearchBar />
+<div class="contacts-header">
+    <h2>Notificaciones</h2>
+    <div class="search-bar-container">
+        <SearchBar />
+    </div>
 </div>
-<div class="contacts-container" class:open={show}>
-    {#each contacts as contact}
-        <CardContainer title={contact.name} subtitle={contact.content} />
+<div class="scroll-vertical">
+    {#each notifications as notification}
+        <CardContainer
+            title={notification.name}
+            subtitle={notification.content}
+        />
     {/each}
 </div>
 
 <style>
-    .open {
-        opacity: 1 !important;
-        transform: translateX(0%) !important;
-        z-index: 1 !important;
-        background-color: #161717;
+    .contacts-header {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
     }
-    @media only screen and (max-width: 1200px) {
-        .sidemenu-header {
-            opacity: 0;
-            transform: translateX(-100%);
-            z-index: 0;
-        }
-        .contacts-container {
-            opacity: 0;
-            transform: translateX(-100%);
-            z-index: 0;
-        }
+    .contacts-header h2 {
+        margin: 0;
+        padding: 0.8em;
     }
-    .sidemenu-header {
-        transition:
-            opacity 0.3s,
-            transform 0.3s;
-        position: fixed;
-        top: 0;
-        left: 4em;
-        width: calc(32em - 1px);
-        height: 8em;
-        border-right: 1px solid #323333;
-        text-align: left;
-    }
-    .sidemenu-header h2 {
-        padding-left: 0.8em;
-    }
-    .contacts-container {
-        transition:
-            opacity 0.3s,
-            transform 0.3s;
-        position: absolute;
-        top: 8em;
-        left: 4em;
-        width: calc(32em - 1px);
-        height: calc(100vh - 8em);
-        border-right: 1px solid #323333;
-        overflow-y: scroll;
+    .search-bar-container {
+        padding-bottom: 1em;
     }
 </style>

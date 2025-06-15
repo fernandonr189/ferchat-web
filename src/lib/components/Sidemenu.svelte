@@ -147,65 +147,52 @@
     ];
 </script>
 
-<div class="sidemenu">
-    <div class="sidemenu-header">
-        <h2 class="title">Ferchat</h2>
-        <div class="search-bar">
-            <div class="search-icon">
-                <Fa icon={faSearch} />
-            </div>
-            <input type="text" />
+<div class="sidemenu-header">
+    <h2 class="title">Ferchat</h2>
+    <div class="search-bar">
+        <div class="search-icon">
+            <Fa icon={faSearch} />
         </div>
+        <input type="text" />
     </div>
-    <div class="contacts-container">
-        {#each contacts as contact}
-            <div class="contact-container">
-                <img
-                    class="profile-pic"
-                    src={profile_pic}
-                    alt="Profile Picture"
-                />
-                <div>
-                    <h4>{contact.name}</h4>
-                    <p>{contact.lastMessage}</p>
-                </div>
+</div>
+<div class="contacts-container">
+    {#each contacts as contact}
+        <div class="contact-container">
+            <img class="profile-pic" src={profile_pic} alt="Profile Picture" />
+            <div>
+                <h4>{contact.name}</h4>
+                <p>{contact.lastMessage}</p>
             </div>
-        {/each}
-    </div>
+        </div>
+    {/each}
 </div>
 
 <style>
     .sidemenu-header {
-        display: flex;
-        flex-direction: column;
         position: fixed;
         top: 0;
         left: 4em;
         width: 32em;
         height: 8em;
-        justify-content: start;
-        box-sizing: border-box;
-        z-index: 2;
-        background-color: #161717;
+        border-style: none solid none none;
+        border-color: #323333;
+        border-width: 1px;
+        text-align: left;
     }
-    .sidemenu {
-        display: flex;
-        flex-direction: column;
+    .sidemenu-header h2 {
+        padding-left: 0.8em;
+    }
+    .contacts-container {
         position: absolute;
-        box-sizing: border-box;
-        top: 0;
+        top: 8em;
         left: 4em;
-        height: 100%;
         width: 32em;
+        height: calc(100vh - 8em);
         border-style: none solid none none;
         border-color: #323333;
         border-width: 1px;
         overflow-y: scroll;
-        overflow-x: hidden;
-    }
-    .title {
-        align-self: self-start;
-        padding: 0 0.8em;
     }
     .search-bar {
         display: flex;
@@ -232,12 +219,6 @@
         background-color: #323333;
         color: #fff;
         font-size: 1em;
-    }
-    .contacts-container {
-        position: absolute;
-        top: 8em;
-        width: 32em;
-        z-index: 1;
     }
     .contact-container {
         display: flex;

@@ -12,5 +12,11 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "svelte": "^5.28.1",
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "svelte-fa": "^4.0.4"
   }
 }

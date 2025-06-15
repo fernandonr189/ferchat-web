@@ -165,7 +165,7 @@
         z-index: 1 !important;
         background-color: #161717;
     }
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 1200px) {
         .sidemenu-header {
             opacity: 0;
             transform: translateX(-100%);

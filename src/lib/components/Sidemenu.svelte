@@ -6,6 +6,126 @@
     const contacts = [
         {
             name: "John Doe",
+            lastMessage: "Hello world!",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
+            lastMessage: "Hello",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
+            lastMessage: "Hello",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
+            lastMessage: "Hello",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
+            lastMessage: "Hello",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
+            lastMessage: "Hello",
+        },
+        {
+            name: "Jane Doe",
+            lastMessage: "Hi",
+        },
+        {
+            name: "Alice Smith",
+            lastMessage: "Hey",
+        },
+        {
+            name: "Bob Johnson",
+            lastMessage: "How are you?",
+        },
+        {
+            name: "Charlie Brown",
+            lastMessage: "What's up?",
+        },
+        {
+            name: "John Doe",
             lastMessage: "Hello",
         },
         {
@@ -28,25 +148,46 @@
 </script>
 
 <div class="sidemenu">
-    <h2 class="title">Ferchat</h2>
-    <div class="search-bar">
-        <div class="search-icon">
-            <Fa icon={faSearch} />
-        </div>
-        <input type="text" />
-    </div>
-    {#each contacts as contact}
-        <div class="contact-container">
-            <img class="profile-pic" src={profile_pic} alt="Profile Picture" />
-            <div>
-                <h4>{contact.name}</h4>
-                <p>{contact.lastMessage}</p>
+    <div class="sidemenu-header">
+        <h2 class="title">Ferchat</h2>
+        <div class="search-bar">
+            <div class="search-icon">
+                <Fa icon={faSearch} />
             </div>
+            <input type="text" />
         </div>
-    {/each}
+    </div>
+    <div class="contacts-container">
+        {#each contacts as contact}
+            <div class="contact-container">
+                <img
+                    class="profile-pic"
+                    src={profile_pic}
+                    alt="Profile Picture"
+                />
+                <div>
+                    <h4>{contact.name}</h4>
+                    <p>{contact.lastMessage}</p>
+                </div>
+            </div>
+        {/each}
+    </div>
 </div>
 
 <style>
+    .sidemenu-header {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 4em;
+        width: 32em;
+        height: 8em;
+        justify-content: start;
+        box-sizing: border-box;
+        z-index: 2;
+        background-color: #161717;
+    }
     .sidemenu {
         display: flex;
         flex-direction: column;
@@ -59,6 +200,8 @@
         border-style: none solid none none;
         border-color: #323333;
         border-width: 1px;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .title {
         align-self: self-start;
@@ -89,6 +232,12 @@
         background-color: #323333;
         color: #fff;
         font-size: 1em;
+    }
+    .contacts-container {
+        position: absolute;
+        top: 8em;
+        width: 32em;
+        z-index: 1;
     }
     .contact-container {
         display: flex;

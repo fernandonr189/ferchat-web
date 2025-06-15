@@ -30,6 +30,7 @@
     .open {
         transform: translateX(0);
         opacity: 1;
+        z-index: 1;
     }
     .sidemenu {
         padding: 0;
@@ -43,6 +44,7 @@
         border-right: 1px solid #323333;
         display: flex;
         flex-direction: column;
+        background-color: #161717;
         transition:
             transform 0.3s ease-in-out,
             opacity 0.3s ease-in-out;

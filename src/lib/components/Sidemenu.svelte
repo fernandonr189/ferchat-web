@@ -160,12 +160,17 @@
     @media only screen and (max-width: 1000px) {
         .sidemenu-header {
             opacity: 0;
+            transform: translateX(-100%);
         }
         .contacts-container {
             opacity: 0;
+            transform: translateX(-100%);
         }
     }
     .sidemenu-header {
+        transition:
+            opacity 0.3s,
+            transform 0.3s;
         position: fixed;
         top: 0;
         left: 4em;
@@ -178,6 +183,9 @@
         padding-left: 0.8em;
     }
     .contacts-container {
+        transition:
+            opacity 0.3s,
+            transform 0.3s;
         position: absolute;
         top: 8em;
         left: 4em;

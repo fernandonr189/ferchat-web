@@ -4,5 +4,5 @@
 </script>
 
 <main>
-    <MainScreen />
+    <Login />
 </main>

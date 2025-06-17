@@ -1,13 +1,72 @@
 <script>
+    import { request } from "./js/repository.js";
     const options = {
         LOGIN: "LOGIN",
         SIGNUP: "SIGNUP",
     };
 
     let selectedOption = $state(options.LOGIN);
-
     function switchOption(option) {
         selectedOption = option;
+    }
+
+    // Signup
+    let signupUsername = $state("");
+    let signupPassword = $state("");
+    let signupEmail = $state("");
+    let signupPasswordConfirmation = $state("");
+
+    async function submitSignup() {
+        if (signupPassword !== signupPasswordConfirmation) {
+            alert("Passwords dont match");
+            return;
+        }
+        const response = await request(
+            "http://localhost:8080/auth/signup",
+            {
+                email: signupEmail,
+                password: signupPassword,
+                username: signupUsername,
+            },
+            "POST",
+        );
+        switch (response.status) {
+            case -1:
+                alert("There was a problem with the request");
+                return;
+            case 200:
+                alert("Signup succesful");
+                break;
+            case 400:
+                alert("Signup failed");
+                break;
+        }
+    }
+
+    // Login
+    let loginPassword = $state("");
+    let loginEmail = $state("");
+
+    async function submitLogin() {
+        const response = await request(
+            "http://localhost:8080/auth/login",
+            {
+                email: loginEmail,
+                password: loginPassword,
+            },
+            "POST",
+        );
+        switch (response.status) {
+            case -1:
+                alert("There was a problem with the request");
+                return;
+            case 200:
+                alert("Login succesful");
+                break;
+            case 400:
+                alert("Login failed");
+                break;
+        }
     }
 </script>
 
@@ -18,32 +77,52 @@
     <div class="login-form">
         {#if selectedOption === options.LOGIN}
             <p>Email</p>
-            <input class="default-input" type="email" placeholder="Email" />
+            <input
+                bind:value={loginEmail}
+                class="default-input"
+                type="email"
+                placeholder="Email"
+            />
             <p>Password</p>
             <input
+                bind:value={loginPassword}
                 class="default-input"
                 type="password"
                 placeholder="Password"
             />
-            <button>Login</button>
+            <button onclick={submitLogin}>Login</button>
             <p>Not a member?</p>
             <button onclick={() => switchOption(options.SIGNUP)}>SignUp</button>
         {:else if selectedOption === options.SIGNUP}
+            <p>Username</p>
+            <input
+                bind:value={signupUsername}
+                class="default-input"
+                type="text"
+                placeholder="Username"
+            />
             <p>Email</p>
-            <input class="default-input" type="email" placeholder="Email" />
+            <input
+                bind:value={signupEmail}
+                class="default-input"
+                type="email"
+                placeholder="Email"
+            />
             <p>Password</p>
             <input
+                bind:value={signupPassword}
                 class="default-input"
                 type="password"
                 placeholder="Password"
             />
             <p>Confirm password</p>
             <input
+                bind:value={signupPasswordConfirmation}
                 class="default-input"
                 type="password"
                 placeholder="Confirm Password"
             />
-            <button>Signup</button>
+            <button onclick={submitSignup}>Signup</button>
             <p>Already a member?</p>
             <button onclick={() => switchOption(options.LOGIN)}>Login</button>
         {/if}

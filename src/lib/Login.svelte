@@ -1,5 +1,5 @@
 <script>
-    import { request } from "./js/repository.js";
+    import { post } from "./js/repository.js";
     const options = {
         LOGIN: "LOGIN",
         SIGNUP: "SIGNUP",
@@ -21,15 +21,11 @@
             alert("Passwords dont match");
             return;
         }
-        const response = await request(
-            "http://localhost:8080/auth/signup",
-            {
-                email: signupEmail,
-                password: signupPassword,
-                username: signupUsername,
-            },
-            "POST",
-        );
+        const response = await post("http://localhost:8080/auth/signup", {
+            email: signupEmail,
+            password: signupPassword,
+            username: signupUsername,
+        });
         switch (response.status) {
             case -1:
                 alert("There was a problem with the request");
@@ -48,14 +44,10 @@
     let loginEmail = $state("");
 
     async function submitLogin() {
-        const response = await request(
-            "http://localhost:8080/auth/login",
-            {
-                email: loginEmail,
-                password: loginPassword,
-            },
-            "POST",
-        );
+        const response = await post("http://localhost:8080/auth/login", {
+            email: loginEmail,
+            password: loginPassword,
+        });
         switch (response.status) {
             case -1:
                 alert("There was a problem with the request");

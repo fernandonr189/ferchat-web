@@ -1,6 +1,7 @@
-export async function request(url, body, method) {
+export async function post(url, body) {
   let response = await fetch(url, {
-    method: method,
+    credentials: "include",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -13,6 +14,34 @@ export async function request(url, body, method) {
       };
     })
     .catch((error) => {
+      return {
+        status: -1,
+        data: error,
+      };
+    });
+  return response;
+}
+
+export async function get(url) {
+  let response = await fetch(url, {
+    credentials: "include",
+    method: "GET",
+  })
+    .then(async (response) => {
+      const data = await response.json().catch((err) => {
+        return {
+          status: response.status,
+          data: null,
+        };
+      });
+
+      return {
+        status: response.status,
+        data: data,
+      };
+    })
+    .catch((error) => {
+      console.log(error);
       return {
         status: -1,
         data: error,

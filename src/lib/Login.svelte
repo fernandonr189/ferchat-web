@@ -1,5 +1,6 @@
 <script>
     import { post } from "./js/repository.js";
+    import { navigate } from "svelte5-router";
     const options = {
         LOGIN: "LOGIN",
         SIGNUP: "SIGNUP",
@@ -53,7 +54,7 @@
                 alert("There was a problem with the request");
                 return;
             case 200:
-                alert("Login succesful");
+                navigate("/");
                 break;
             case 400:
                 alert("Login failed");

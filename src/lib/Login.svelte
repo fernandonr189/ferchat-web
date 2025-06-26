@@ -12,7 +12,6 @@
     }
 
     // Signup
-    let signupUsername = $state("");
     let signupPassword = $state("");
     let signupEmail = $state("");
     let signupPasswordConfirmation = $state("");
@@ -25,7 +24,6 @@
         const response = await post("http://localhost:8080/auth/signup", {
             email: signupEmail,
             password: signupPassword,
-            username: signupUsername,
         });
         switch (response.status) {
             case -1:
@@ -87,13 +85,6 @@
             <p>Not a member?</p>
             <button onclick={() => switchOption(options.SIGNUP)}>SignUp</button>
         {:else if selectedOption === options.SIGNUP}
-            <p>Username</p>
-            <input
-                bind:value={signupUsername}
-                class="default-input"
-                type="text"
-                placeholder="Username"
-            />
             <p>Email</p>
             <input
                 bind:value={signupEmail}

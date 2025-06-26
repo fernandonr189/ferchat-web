@@ -4,6 +4,7 @@
     import { Router, Route } from "svelte5-router";
     import MainScreen from "./lib/MainScreen.svelte";
     import Login from "./lib/Login.svelte";
+    import ProfileScreen from "./lib/ProfileScreen.svelte";
 
     export let url = "/auth";
 
@@ -15,7 +16,6 @@
                 navigate("/auth");
                 return;
             case 200:
-                // Session cookie available}
                 navigate("/");
                 break;
             case 401:
@@ -33,5 +33,6 @@
     <Router {url}>
         <Route path="/" component={MainScreen} />
         <Route path="/auth" component={Login} />
+        <Route path="/profile" component={ProfileScreen} />
     </Router>
 </main>

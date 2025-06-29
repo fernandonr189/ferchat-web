@@ -52,7 +52,7 @@
                 alert("There was a problem with the request");
                 return;
             case 200:
-                if (response.data.data.has_profile) {
+                if (response.content.data.has_profile) {
                     navigate("/");
                 } else {
                     navigate("/profile");

@@ -19,8 +19,27 @@
                 navigate("/");
                 break;
             case 401:
-                // Unauthorized, no cookie, or its invalid
-                alert("Invalid cookie");
+                if (Number.isInteger(response.content.data)) {
+                    switch (response.content.data) {
+                        case 40001:
+                            navigate("/auth");
+                            break;
+                        case 40002:
+                            navigate("/auth");
+                            break;
+                        case 40003:
+                            navigate("/profile");
+                            break;
+                        default:
+                            navigate("/auth");
+                            break;
+                    }
+                } else {
+                    navigate("/auth");
+                }
+                break;
+            case 500:
+                alert("There was a problem recovering your session");
                 navigate("/auth");
                 break;
         }

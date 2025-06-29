@@ -10,13 +10,13 @@ export async function post(url, body) {
     .then(async (response) => {
       return {
         status: response.status,
-        data: await response.json(),
+        content: await response.json(),
       };
     })
     .catch((error) => {
       return {
         status: -1,
-        data: error,
+        content: error,
       };
     });
   return response;
@@ -31,20 +31,20 @@ export async function get(url) {
       const data = await response.json().catch((err) => {
         return {
           status: response.status,
-          data: null,
+          content: null,
         };
       });
 
       return {
         status: response.status,
-        data: data,
+        content: data,
       };
     })
     .catch((error) => {
       console.log(error);
       return {
         status: -1,
-        data: error,
+        content: error,
       };
     });
   return response;

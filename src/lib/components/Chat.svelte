@@ -2,149 +2,56 @@
     import profilePic from "../../assets/profile_pic.jpg";
     import background from "../../assets/chat_background.jpg";
     import ChatInput from "./ChatInput.svelte";
+    let ws;
+    let input = $state("");
+    let messages = $state([]);
 
-    const messages = [
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-        {
-            text: "Hello, how are you?",
-            sent: false,
-        },
-        {
-            text: "Fine, and you?",
-            sent: true,
-        },
-        {
-            text: "Great!",
-            sent: false,
-        },
-        {
-            text: "I'm doing well, thanks!",
-            sent: false,
-        },
-        {
-            text: "Amazing!",
-            sent: true,
-        },
-    ];
+    function connect() {
+        ws = new WebSocket("ws://localhost:8080/api/socket");
+
+        ws.onopen = () => {
+            console.log("Connected!");
+            messages.push({
+                text: "✅ Connected to server",
+                sent: true,
+            });
+        };
+
+        ws.onmessage = (event) => {
+            console.log("Server says:", event.data);
+            messages.push({
+                text: `🟢 ${event.data}`,
+                sent: false,
+            });
+        };
+
+        ws.onclose = () => {
+            messages.push({
+                text: "❌ Disconnected from server",
+                sent: true,
+            });
+        };
+
+        ws.onerror = (err) => {
+            console.error("WebSocket error:", err);
+        };
+    }
+
+    function sendMessage() {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(input);
+            messages = [
+                ...messages,
+                {
+                    text: `🔵 You: ${input}`,
+                    sent: true,
+                },
+            ];
+            input = "";
+        }
+    }
+
+    connect();
 </script>
 
 <div class="chat-header">
@@ -160,7 +67,7 @@
     {/each}
 </div>
 <div class="message-input">
-    <ChatInput />
+    <ChatInput bind:message={input} />
 </div>
 
 <style>

@@ -1,8 +1,9 @@
 <script>
+    let { message = $bindable("") } = $props();
 </script>
 
 <div class="chat-input">
-    <input type="text" />
+    <input type="text" bind:value={message} />
 </div>
 
 <style>

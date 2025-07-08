@@ -5,6 +5,7 @@
     import Fa from "svelte-fa";
     import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
     import { tick } from "svelte";
+    import { getSocket } from "../js/socket";
 
     let ws;
     let input = $state("");
@@ -23,7 +24,7 @@
     }
 
     function connect() {
-        ws = new WebSocket("ws://localhost:8080/api/socket");
+        ws = getSocket();
 
         ws.onopen = () => {
             console.log("Connected!");

@@ -1,18 +1,15 @@
 <script>
     import profilePic from "../../assets/profile_pic.jpg";
     import background from "../../assets/chat_background.jpg";
-    import ChatInput from "./ChatInput.svelte";
     import Fa from "svelte-fa";
     import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
     import { tick } from "svelte";
-    import { getSocket } from "../js/socket";
 
     let ws;
-    let input = $state("");
-    let messages = $state([]);
+    let { messages, sendMessageFunction, input = $bindable("") } = $props();
     let messages_div = $state();
 
-    function autoScroll() {
+    export function autoScroll() {
         if (
             messages_div.offsetHeight + messages_div.scrollTop >
             messages_div.scrollHeight - 20
@@ -23,54 +20,12 @@
         }
     }
 
-    function connect() {
-        ws = getSocket();
-
-        ws.onopen = () => {
-            console.log("Connected!");
-            messages.push({
-                text: "✅ Connected to server",
-                sent: true,
-            });
-        };
-
-        ws.onmessage = (event) => {
-            console.log("Server says:", event.data);
-            messages.push({
-                text: `🟢 ${event.data}`,
-                sent: false,
-            });
-            autoScroll();
-        };
-
-        ws.onclose = () => {
-            messages.push({
-                text: "❌ Disconnected from server",
-                sent: true,
-            });
-        };
-
-        ws.onerror = (err) => {
-            console.error("WebSocket error:", err);
-        };
-    }
-
-    function sendMessage() {
-        if (ws && ws.readyState === WebSocket.OPEN) {
-            ws.send(input);
-            messages = [
-                ...messages,
-                {
-                    text: `🔵 You: ${input}`,
-                    sent: true,
-                },
-            ];
+    function submit(event) {
+        if (event.key === "Enter") {
+            sendMessageFunction();
             input = "";
         }
-        autoScroll();
     }
-
-    connect();
 </script>
 
 <div class="chat-header">
@@ -86,9 +41,11 @@
     {/each}
 </div>
 <div class="message-input">
-    <ChatInput bind:message={input} onSubmit={sendMessage} />
+    <div class="chat-input">
+        <input type="text" bind:value={input} onkeydown={submit} />
+    </div>
 </div>
-<button onclick={sendMessage} class="send-button">
+<button onclick={sendMessageFunction} class="send-button">
     <Fa icon={faPaperPlane} />
 </button>
 
@@ -204,5 +161,24 @@
         height: calc(100% - 4em);
         filter: brightness(0.5);
         object-fit: cover;
+    }
+    .chat-input {
+        display: flex;
+        margin: 0 0.8em;
+        border-radius: 0.8em;
+        height: 2.5em;
+        border: none;
+        background-color: #323333;
+        align-content: center;
+        justify-content: center;
+    }
+    .chat-input input {
+        border: none;
+        outline: none;
+        border-radius: 0.8em;
+        width: calc(100% - 2em);
+        background-color: #323333;
+        color: #fff;
+        font-size: 1em;
     }
 </style>

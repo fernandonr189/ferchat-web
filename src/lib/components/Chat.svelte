@@ -4,10 +4,23 @@
     import ChatInput from "./ChatInput.svelte";
     import Fa from "svelte-fa";
     import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+    import { tick } from "svelte";
 
     let ws;
     let input = $state("");
     let messages = $state([]);
+    let messages_div = $state();
+
+    function autoScroll() {
+        if (
+            messages_div.offsetHeight + messages_div.scrollTop >
+            messages_div.scrollHeight - 20
+        ) {
+            tick().then(() => {
+                messages_div.scrollTo(0, messages_div.scrollHeight);
+            });
+        }
+    }
 
     function connect() {
         ws = new WebSocket("ws://localhost:8080/api/socket");
@@ -26,6 +39,7 @@
                 text: `🟢 ${event.data}`,
                 sent: false,
             });
+            autoScroll();
         };
 
         ws.onclose = () => {
@@ -52,6 +66,7 @@
             ];
             input = "";
         }
+        autoScroll();
     }
 
     connect();
@@ -62,7 +77,7 @@
     <h3>John Doe</h3>
 </div>
 <img class="chat-background" src={background} alt="" />
-<div class="chat-messages">
+<div class="chat-messages" bind:this={messages_div}>
     {#each messages as message}
         <div class="message" class:mine={message.sent}>
             <p>{message.text}</p>

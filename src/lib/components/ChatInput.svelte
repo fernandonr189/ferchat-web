@@ -1,9 +1,16 @@
 <script>
-    let { message = $bindable("") } = $props();
+    let { message = $bindable(""), onSubmit } = $props();
+
+    function submit(event) {
+        if (event.key === "Enter") {
+            onSubmit();
+            message = "";
+        }
+    }
 </script>
 
 <div class="chat-input">
-    <input type="text" bind:value={message} />
+    <input type="text" bind:value={message} onkeydown={submit} />
 </div>
 
 <style>

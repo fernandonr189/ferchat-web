@@ -70,9 +70,9 @@
     {/each}
 </div>
 <div class="message-input">
-    <ChatInput bind:message={input} />
+    <ChatInput bind:message={input} onSubmit={sendMessage} />
 </div>
-<button class="send-button">
+<button onclick={sendMessage} class="send-button">
     <Fa icon={faPaperPlane} />
 </button>
 

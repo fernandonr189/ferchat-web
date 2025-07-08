@@ -2,6 +2,9 @@
     import profilePic from "../../assets/profile_pic.jpg";
     import background from "../../assets/chat_background.jpg";
     import ChatInput from "./ChatInput.svelte";
+    import Fa from "svelte-fa";
+    import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+
     let ws;
     let input = $state("");
     let messages = $state([]);
@@ -69,6 +72,9 @@
 <div class="message-input">
     <ChatInput bind:message={input} />
 </div>
+<button class="send-button">
+    <Fa icon={faPaperPlane} />
+</button>
 
 <style>
     @media only screen and (max-width: 1200px) {
@@ -82,12 +88,36 @@
         }
         .message-input {
             left: 4em !important;
-            width: calc(100% - 4em) !important;
+            width: calc(100% - 8em) !important;
         }
         .chat-messages {
             left: 4em !important;
             width: calc(100% - 4em) !important;
         }
+    }
+    .send-button {
+        background-color: #1d1f1f;
+        position: absolute;
+        right: 0;
+        bottom: 1.5em;
+        width: 3.2em;
+        padding: 0 0.1em 0 0;
+        height: 2.5em;
+        margin: 0 1.6em 0 0.8em;
+        box-sizing: border-box;
+    }
+    .message-input {
+        transition:
+            left 0.3s ease-in-out,
+            width 0.3s ease-in-out;
+        position: absolute;
+        bottom: 1.5em;
+        left: 36em;
+        right: 4em;
+        width: calc(100% - 40em);
+        height: 2.5em;
+        padding: 0 0.8em;
+        box-sizing: border-box;
     }
     .mine {
         margin-left: auto !important;
@@ -120,18 +150,6 @@
         flex-direction: column;
         flex: 0 0 auto;
         padding: 0.8em 5em;
-    }
-    .message-input {
-        transition:
-            left 0.3s ease-in-out,
-            width 0.3s ease-in-out;
-        position: absolute;
-        bottom: 0;
-        left: 36em;
-        width: calc(100% - 36em);
-        height: 4em;
-        padding: 0 0.8em;
-        box-sizing: border-box;
     }
     .chat-header {
         transition:

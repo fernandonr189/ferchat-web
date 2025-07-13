@@ -1,10 +1,10 @@
 <script>
-    import { get } from "./lib/js/repository";
     import { navigate } from "svelte5-router";
     import { Router, Route } from "svelte5-router";
     import MainScreen from "./lib/MainScreen.svelte";
     import Login from "./lib/Login.svelte";
     import ProfileScreen from "./lib/ProfileScreen.svelte";
+    import { get } from "./lib/js/requests";
 
     export let url = "/auth";
 

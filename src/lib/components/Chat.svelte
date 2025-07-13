@@ -4,28 +4,46 @@
     import Fa from "svelte-fa";
     import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
     import { tick } from "svelte";
+    import { sendData } from "../js/api/websocket";
+    import { addMessage, messagesState } from "../state/messagesState.svelte";
 
     let ws;
-    let { messages, sendMessageFunction, input = $bindable("") } = $props();
     let messages_div = $state();
-
-    export function autoScroll() {
+    let input = $state("");
+    function autoScroll() {
         if (
             messages_div.offsetHeight + messages_div.scrollTop >
-            messages_div.scrollHeight - 20
+            messages_div.scrollHeight - 100
         ) {
-            tick().then(() => {
-                messages_div.scrollTo(0, messages_div.scrollHeight);
-            });
+            messages_div.scrollTo(0, messages_div.scrollHeight);
         }
     }
 
     function submit(event) {
         if (event.key === "Enter") {
-            sendMessageFunction();
+            sendMessage();
             input = "";
         }
     }
+
+    function sendMessage() {
+        sendData({
+            type: "SendMessage",
+            message: input,
+        });
+
+        addMessage({
+            text: `${input}`,
+            sent: true,
+        });
+        input = "";
+        autoScroll();
+    }
+
+    $effect(() => {
+        messagesState.messages.length;
+        autoScroll();
+    });
 </script>
 
 <div class="chat-header">
@@ -34,7 +52,7 @@
 </div>
 <img class="chat-background" src={background} alt="" />
 <div class="chat-messages" bind:this={messages_div}>
-    {#each messages as message}
+    {#each messagesState.messages as message}
         <div class="message" class:mine={message.sent}>
             <p>{message.text}</p>
         </div>
@@ -45,7 +63,7 @@
         <input type="text" bind:value={input} onkeydown={submit} />
     </div>
 </div>
-<button onclick={sendMessageFunction} class="send-button">
+<button onclick={sendMessage} class="send-button">
     <Fa icon={faPaperPlane} />
 </button>
 

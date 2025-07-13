@@ -1,5 +1,5 @@
 <script>
-    import { post } from "./js/repository.js";
+    import { post } from "./js/requests.js";
     import { navigate } from "svelte5-router";
 
     let username = $state("");

@@ -1,5 +1,10 @@
 <script>
-    import { post } from "./js/requests.js";
+    import {
+        login,
+        LOGIN_STATUS,
+        signup,
+        SIGNUP_STATUS,
+    } from "./js/api/http.js";
     import { navigate } from "svelte5-router";
     const options = {
         LOGIN: "LOGIN",
@@ -18,22 +23,22 @@
 
     async function submitSignup() {
         if (signupPassword !== signupPasswordConfirmation) {
-            alert("Passwords dont match");
+            alert("Passwords don't match");
             return;
         }
-        const response = await post("http://localhost:8080/auth/signup", {
-            email: signupEmail,
-            password: signupPassword,
-        });
-        switch (response.status) {
-            case -1:
-                alert("There was a problem with the request");
-                return;
-            case 200:
-                alert("Signup succesful");
+        const signupResponse = await signup(signupEmail, signupPassword);
+        switch (signupResponse.status) {
+            case SIGNUP_STATUS.OK:
+                alert("Signup successful");
                 break;
-            case 400:
-                alert("Signup failed");
+            case SIGNUP_STATUS.EMAIL_ALREADY_EXISTS:
+                alert("Email already taken");
+                break;
+            case SIGNUP_STATUS.UNKNOWN_ERROR:
+                alert("An unknown error occurred");
+                break;
+            case SIGNUP_STATUS.SERVER_ERROR:
+                alert("An unknown error occurred");
                 break;
         }
     }
@@ -43,23 +48,28 @@
     let loginEmail = $state("");
 
     async function submitLogin() {
-        const response = await post("http://localhost:8080/auth/login", {
-            email: loginEmail,
-            password: loginPassword,
-        });
-        switch (response.status) {
-            case -1:
-                alert("There was a problem with the request");
-                return;
-            case 200:
-                if (response.content.data.has_profile) {
-                    navigate("/");
-                } else {
-                    navigate("/profile");
-                }
+        const loginResponse = await login(loginEmail, loginPassword);
+        switch (loginResponse.status) {
+            case LOGIN_STATUS.OK:
+                navigate("/");
                 break;
-            case 400:
-                alert("Login failed");
+            case LOGIN_STATUS.USER_HAS_NO_PROFILE:
+                navigate("/profile");
+                break;
+            case LOGIN_STATUS.USER_DOES_NOT_EXIST:
+                alert("User does not exist");
+                break;
+            case LOGIN_STATUS.USER_INACTIVE:
+                alert("User is inactive");
+                break;
+            case LOGIN_STATUS.INCORRECT_PASSWORD:
+                alert("Incorrect password");
+                break;
+            case LOGIN_STATUS.UNKNOWN_ERROR:
+                alert("An unknown error occurred");
+                break;
+            case LOGIN_STATUS.SERVER_ERROR:
+                alert("Server error");
                 break;
         }
     }

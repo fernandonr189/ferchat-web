@@ -1,5 +1,5 @@
 <script>
-    import { post } from "./js/requests.js";
+    import { profile_update, PROFILE_UPDATE_STATUS } from "./js/api/http.js";
     import { navigate } from "svelte5-router";
 
     let username = $state("");
@@ -9,23 +9,29 @@
     let bio = $state("");
 
     async function submitProfile() {
-        const response = await post("http://localhost:8080/api/profile", {
-            first_name: firstName,
-            last_name: lastName,
-            username: username,
-            phone_number: phoneNumber,
-            bio: bio,
-        });
-        switch (response.status) {
-            case -1:
-                alert("There was a problem with the request");
-                return;
-            case 200:
-                alert("Profile updated");
+        const profileUpdateResponse = await profile_update(
+            firstName,
+            lastName,
+            username,
+            phoneNumber,
+            bio,
+        );
+
+        switch (profileUpdateResponse.status) {
+            case PROFILE_UPDATE_STATUS.OK:
                 navigate("/");
                 break;
-            case 400:
-                alert("Profile update failed");
+            case PROFILE_UPDATE_STATUS.PROFILE_ALREADY_EXISTS:
+                alert("Profile already exists");
+                break;
+            case PROFILE_UPDATE_STATUS.USERNAME_ALREADY_EXISTS:
+                alert("Username already exists");
+                break;
+            case PROFILE_UPDATE_STATUS.UNKNOWN_ERROR:
+                alert("Unknown error");
+                break;
+            case PROFILE_UPDATE_STATUS.SERVER_ERROR:
+                alert("Server error");
                 break;
         }
     }

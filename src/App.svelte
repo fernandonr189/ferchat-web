@@ -4,43 +4,31 @@
     import MainScreen from "./lib/MainScreen.svelte";
     import Login from "./lib/Login.svelte";
     import ProfileScreen from "./lib/ProfileScreen.svelte";
-    import { get } from "./lib/js/requests";
+    import { get } from "./lib/js/util/requests";
+    import { session_check, SESSION_STATUS } from "./lib/js/api/http";
 
     export let url = "/auth";
 
     async function checkSession() {
-        const response = await get("http://localhost:8080/api/session");
-        switch (response.status) {
-            case -1:
-                alert("No connection to the server");
-                navigate("/auth");
-                return;
-            case 200:
+        const sessionCheck = await session_check();
+        switch (sessionCheck.status) {
+            case SESSION_STATUS.OK:
                 navigate("/");
                 break;
-            case 401:
-                if (Number.isInteger(response.content.data)) {
-                    switch (response.content.data) {
-                        case 40001:
-                            navigate("/auth");
-                            break;
-                        case 40002:
-                            navigate("/auth");
-                            break;
-                        case 40003:
-                            navigate("/profile");
-                            break;
-                        default:
-                            navigate("/auth");
-                            break;
-                    }
-                } else {
-                    navigate("/auth");
-                }
-                break;
-            case 500:
-                alert("There was a problem recovering your session");
+            case SESSION_STATUS.USER_DOES_NOT_EXIST:
                 navigate("/auth");
+                break;
+            case SESSION_STATUS.USER_IS_DISABLED:
+                navigate("/auth");
+                break;
+            case SESSION_STATUS.USER_DOES_NOT_HAVE_A_PROFILE:
+                navigate("/profile");
+                break;
+            case SESSION_STATUS.UNKNOWN_ERROR:
+                alert("Unknown error");
+                break;
+            case SESSION_STATUS.SERVER_ERROR:
+                alert("Server error");
                 break;
         }
     }

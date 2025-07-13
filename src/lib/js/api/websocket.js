@@ -1,4 +1,4 @@
-import { addMessage } from "../../state/messagesState.svelte";
+import { handleContactSearchResult } from "./websocketHandlers/contactSearch";
 import { handleNewMessage } from "./websocketHandlers/newMessage";
 
 let socket;
@@ -24,6 +24,9 @@ export function configureSocket(ws) {
     switch (eventJson.type) {
       case "Text":
         handleNewMessage(eventJson);
+        break;
+      case "ContactSearchResult":
+        handleContactSearchResult(eventJson);
         break;
       default:
     }

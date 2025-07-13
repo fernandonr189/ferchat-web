@@ -4,7 +4,6 @@
     import MainScreen from "./lib/MainScreen.svelte";
     import Login from "./lib/Login.svelte";
     import ProfileScreen from "./lib/ProfileScreen.svelte";
-    import { get } from "./lib/js/util/requests";
     import { session_check, SESSION_STATUS } from "./lib/js/api/http";
 
     export let url = "/auth";

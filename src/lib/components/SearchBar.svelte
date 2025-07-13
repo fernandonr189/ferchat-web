@@ -1,13 +1,27 @@
 <script>
     import Fa from "svelte-fa";
     import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+    let { onSearch } = $props();
+
+    let input = $state("");
+
+    function onSubmit() {
+        onSearch(input);
+    }
+
+    function onKeyDown(event) {
+        if (event.key === "Enter") {
+            onSearch(input);
+        }
+    }
 </script>
 
 <div class="search-bar">
-    <div class="search-icon">
+    <button class="search-icon" onclick={onSubmit}>
         <Fa icon={faSearch} />
-    </div>
-    <input type="text" />
+    </button>
+    <input bind:value={input} type="text" onkeydown={onKeyDown} />
 </div>
 
 <style>
@@ -21,7 +35,12 @@
         align-content: center;
         justify-content: start;
     }
+    .search-icon:hover {
+        border: none;
+    }
     .search-icon {
+        background-color: #323333;
+        border-radius: 0.8em;
         width: 2.5em;
         height: 2.5em;
         display: flex;

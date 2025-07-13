@@ -1,125 +1,27 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
+    import { sendData } from "../js/api/websocket";
+    import { contactsSearchState } from "../state/contactSearchState.svelte";
 
-    const contacts = [
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-        {
-            name: "John Doe",
-        },
-        {
-            name: "Jane Doe",
-        },
-        {
-            name: "Alice Smith",
-        },
-        {
-            name: "Bob Johnson",
-        },
-        {
-            name: "Charlie Brown",
-        },
-    ];
+    const onSearch = (input) => {
+        const query = input.toLowerCase();
+        sendData({
+            type: "ContactSearch",
+            query: query,
+        });
+    };
 </script>
 
 <div class="contacts-header">
     <h2>Contactos</h2>
     <div class="search-bar-container">
-        <SearchBar />
+        <SearchBar {onSearch} />
     </div>
 </div>
 <div class="scroll-vertical">
-    {#each contacts as contact}
-        <CardContainer title={contact.name} />
+    {#each contactsSearchState.contacts as contact}
+        <CardContainer title={contact.username} />
     {/each}
 </div>
 

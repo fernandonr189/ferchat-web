@@ -3,11 +3,9 @@
     import background from "../../assets/chat_background.jpg";
     import Fa from "svelte-fa";
     import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-    import { tick } from "svelte";
     import { sendData } from "../js/api/websocket";
     import { addMessage, messagesState } from "../state/messagesState.svelte";
 
-    let ws;
     let messages_div = $state();
     let input = $state("");
     function autoScroll() {

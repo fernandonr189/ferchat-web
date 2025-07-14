@@ -29,6 +29,9 @@
             case SESSION_STATUS.SERVER_ERROR:
                 alert("Server error");
                 break;
+            case SESSION_STATUS.INVALID_COOKIE:
+                navigate("/auth");
+                break;
         }
     }
 

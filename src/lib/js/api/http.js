@@ -157,6 +157,7 @@ export const SESSION_STATUS = {
   USER_DOES_NOT_HAVE_A_PROFILE: "USER_DOES_NOT_HAVE_A_PROFILE",
   UNKNOWN_ERROR: "UNKNOWN_ERROR",
   SERVER_ERROR: "SERVER_ERROR",
+  INVALID_COOKIE: "INVALID_COOKIE",
 };
 
 export async function session_check() {
@@ -165,6 +166,11 @@ export async function session_check() {
     case 200:
       return {
         status: SESSION_STATUS.OK,
+        data: null,
+      };
+    case 401:
+      return {
+        status: SESSION_STATUS.INVALID_COOKIE,
         data: null,
       };
     case 400:

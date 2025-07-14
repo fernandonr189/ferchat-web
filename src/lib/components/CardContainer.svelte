@@ -1,6 +1,14 @@
 <script>
     import profilePic from "../../assets/profile_pic.jpg";
-    let { title, subtitle = null } = $props();
+    import { sendData } from "../js/api/websocket";
+    let { title, subtitle = null, id } = $props();
+
+    function sendFriendRequest() {
+        sendData({
+            type: "SendFriendRequest",
+            target_profile: id,
+        });
+    }
 </script>
 
 <div class="top-container">
@@ -14,7 +22,7 @@
         </div>
     </div>
     <div class="drawer">
-        <button>Send friend request</button>
+        <button onclick={sendFriendRequest}>Send friend request</button>
         <button>Block</button>
     </div>
 </div>

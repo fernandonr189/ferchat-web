@@ -21,7 +21,7 @@
 </div>
 <div class="scroll-vertical">
     {#each contactsSearchState.contacts as contact}
-        <CardContainer title={contact.username} />
+        <CardContainer title={contact.username} id={contact.id} />
     {/each}
 </div>
 

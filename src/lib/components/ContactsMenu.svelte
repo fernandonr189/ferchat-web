@@ -11,6 +11,12 @@
             query: query,
         });
     };
+    function sendFriendRequest(id) {
+        sendData({
+            type: "SendFriendRequest",
+            target_profile: id,
+        });
+    }
 </script>
 
 <div class="contacts-header">
@@ -21,7 +27,14 @@
 </div>
 <div class="scroll-vertical">
     {#each contactsSearchState.contacts as contact}
-        <CardContainer title={contact.username} id={contact.id} />
+        <CardContainer
+            title={contact.username}
+            id={contact.id}
+            topButton={{
+                label: "Enviar solicitud de amistad",
+                action: sendFriendRequest,
+            }}
+        />
     {/each}
 </div>
 

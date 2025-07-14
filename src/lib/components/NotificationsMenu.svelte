@@ -1,86 +1,61 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
+    import { sendData } from "../js/api/websocket";
+    import { friendRequestsState } from "../state/friendRequests.svelte";
+    import { onMount } from "svelte";
 
-    const notifications = [
-        {
-            name: "John Doe",
-            content: "Has reacted to your message",
-        },
-        {
-            name: "Jane Doe",
-            content: "Added you to a group",
-        },
-        {
-            name: "Alice Smith",
-            content: "Added you to a group",
-        },
-        {
-            name: "Bob Johnson",
-            content: "Invited you to a comunity",
-        },
-        {
-            name: "John Doe",
-            content: "Has reacted to your message",
-        },
-        {
-            name: "Jane Doe",
-            content: "Added you to a group",
-        },
-        {
-            name: "Alice Smith",
-            content: "Added you to a group",
-        },
-        {
-            name: "Bob Johnson",
-            content: "Invited you to a comunity",
-        },
-        {
-            name: "John Doe",
-            content: "Has reacted to your message",
-        },
-        {
-            name: "Jane Doe",
-            content: "Added you to a group",
-        },
-        {
-            name: "Alice Smith",
-            content: "Added you to a group",
-        },
-        {
-            name: "Bob Johnson",
-            content: "Invited you to a comunity",
-        },
-        {
-            name: "John Doe",
-            content: "Has reacted to your message",
-        },
-        {
-            name: "Jane Doe",
-            content: "Added you to a group",
-        },
-        {
-            name: "Alice Smith",
-            content: "Added you to a group",
-        },
-        {
-            name: "Bob Johnson",
-            content: "Invited you to a comunity",
-        },
-    ];
+    onMount(() => {
+        if (!friendRequestsState.initialized) {
+            onSearch("");
+            friendRequestsState.initialized = true;
+        }
+    });
+
+    const onSearch = (input) => {
+        console.log(input);
+        sendData({
+            type: "GetFriendRequests",
+        });
+    };
+
+    function acceptFriendRequest(id) {
+        sendData({
+            type: "HandleFriendRequest",
+            target_profile: id,
+            accepted: true,
+        });
+        onSearch("");
+    }
+    function denyFriendRequest(id) {
+        sendData({
+            type: "HandleFriendRequest",
+            target_profile: id,
+            accepted: false,
+        });
+        onSearch("");
+    }
 </script>
 
 <div class="contacts-header">
     <h2>Notificaciones</h2>
     <div class="search-bar-container">
-        <SearchBar />
+        <SearchBar {onSearch} />
     </div>
 </div>
 <div class="scroll-vertical">
-    {#each notifications as notification}
+    {#each friendRequestsState.friendRequests as friendRequest}
         <CardContainer
-            title={notification.name}
-            subtitle={notification.content}
+            id={friendRequest.sender_id}
+            title={friendRequest.username}
+            topButton={{
+                label: "Aceptar",
+                action: acceptFriendRequest,
+            }}
+            bottomButton={{
+                label: "Denegar",
+                action: denyFriendRequest,
+            }}
         />
     {/each}
 </div>

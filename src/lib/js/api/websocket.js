@@ -1,4 +1,5 @@
 import { handleContactSearchResult } from "./websocketHandlers/contactSearch";
+import { handleFriendRequestResult } from "./websocketHandlers/friendRequests";
 import { handleNewMessage } from "./websocketHandlers/newMessage";
 
 let socket;
@@ -27,6 +28,9 @@ export function configureSocket(ws) {
         break;
       case "ContactSearchResult":
         handleContactSearchResult(eventJson);
+        break;
+      case "FriendRequestResult":
+        handleFriendRequestResult(eventJson);
         break;
       default:
     }

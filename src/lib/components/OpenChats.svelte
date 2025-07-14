@@ -1,80 +1,28 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
     import CardContainer from "./CardContainer.svelte";
+    import { sendData } from "../js/api/websocket";
+    import { onMount } from "svelte";
+    import { friendsState } from "../state/friends.svelte";
 
-    const messages = [
-        {
-            name: "John Doe",
-            lastMessage: "hellooo",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Yes!",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "No, i don't think so",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "hellooo",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Yes!",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "No, i don't think so",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "",
-        },
-        {
-            name: "John Doe",
-            lastMessage: "hellooo",
-        },
-        {
-            name: "Jane Doe",
-            lastMessage: "How are you?",
-        },
-        {
-            name: "Alice Smith",
-            lastMessage: "Yes!",
-        },
-        {
-            name: "Bob Johnson",
-            lastMessage: "No, i don't think so",
-        },
-        {
-            name: "Charlie Brown",
-            lastMessage: "",
-        },
-    ];
+    const onSearch = (input) => {
+        const query = input.toLowerCase();
+        sendData({
+            type: "SearchFriendList",
+            query: query,
+        });
+    };
 </script>
 
 <div class="contacts-header">
     <h2>Ferchat</h2>
     <div class="search-bar-container">
-        <SearchBar />
+        <SearchBar {onSearch} />
     </div>
 </div>
 <div class="scroll-vertical">
-    {#each messages as message}
-        <CardContainer title={message.name} subtitle={message.lastMessage} />
+    {#each friendsState.friends as friend}
+        <CardContainer title={friend.username} id={friend.id} />
     {/each}
 </div>
 

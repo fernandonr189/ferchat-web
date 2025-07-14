@@ -5,13 +5,6 @@
     import { friendRequestsState } from "../state/friendRequests.svelte";
     import { onMount } from "svelte";
 
-    onMount(() => {
-        if (!friendRequestsState.initialized) {
-            onSearch("");
-            friendRequestsState.initialized = true;
-        }
-    });
-
     const onSearch = (input) => {
         console.log(input);
         sendData({
